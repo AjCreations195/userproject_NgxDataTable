@@ -1,0 +1,33 @@
+<!-- <mat-toolbar color="accent" class=" mat-elevation-z6" >
+    <span routerLink="/">
+        <mat-icon class="nav-icon mx-1">account_circle</mat-icon> User Details App
+      </span>
+    <div class="spacer"></div>
+    <div class="d-none d-md-block navButton" >
+    <a  fxHide.xs  routerLink="/" >Home</a>
+    <a  mat-button routerLink="">About</a>
+  
+  </div>
+  <div fxFlex fxLayout="row" fxLayoutAlign="flex-end" class="d-block d-md-none" >
+            <a class="valign-center" mat-icon-button [matMenuTriggerFor]="menuItem" aria-label="additional links">
+                <mat-icon class="text-white">menu</mat-icon>
+            </a>
+            <mat-menu #menuItem="matMenu">
+                <button routerLinkActive="active"  mat-menu-item routerLink="/">Home</button>
+                <button routerLinkActive="active"  mat-menu-item routerLink="">About</button>
+                
+              </mat-menu>
+        </div>
+  </mat-toolbar>
+   -->
+
+<mat-toolbar color="accent" class="mat-elevation-z5">
+  <mat-icon class="nav-icon">
+      supervised_user_circle
+    </mat-icon>
+  <span routerLink="/">
+    User Details App
+  </span>
+  <span class="spacer"></span>
+  <button  (click)="addUser()"  mat-raised-button>Add Product</button>
+</mat-toolbar>

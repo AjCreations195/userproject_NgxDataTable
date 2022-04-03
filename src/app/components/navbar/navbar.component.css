@@ -1,0 +1,16 @@
+
+  .spacer{
+  flex:1 1 auto;
+  }
+ 
+  .navButton a{
+      text-decoration: none;
+      color: white;
+      margin-right: 10px;
+      font-size: 18px;
+  }
+  .nav-icon{
+      font-size: 30px;margin-bottom: 10px;
+      margin-right: 10px;
+
+  }
