@@ -11,7 +11,6 @@ import { UserStoreService } from 'src/app/services/user-store.service';
 })
 export class HomeComponent implements OnInit {
 
-  public data: Object[] = [];
   public sortSettings!: SortSettingsModel;
   public pageSettings!: PageSettingsModel;
   public users: any = [];
