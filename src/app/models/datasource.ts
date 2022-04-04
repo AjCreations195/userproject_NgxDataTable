@@ -1,7 +1,4 @@
-/**
- * Test cases data source
- */
- export let sampleData = [
+export let sampleData = [
     {
         userID: 1,
         userName: 'Dane',

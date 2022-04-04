@@ -44,10 +44,11 @@ export class UserStoreService extends Subject<DataStateChangeEventArgs> {
      
      return this.http.put<User>(this.apiUrl, dataSourceChangedEvent.data)
    }
-   deleteRecord(dataSourceChangedEvent:DataSourceChangedEventArgs){
-    //  const id:number = dataSourceChangedEvent.data['0'].id
+   deleteRecord(dataSourceChangedEvent:any){
+
+     const id= dataSourceChangedEvent.data[0].id
     
-    //  const url = `${this.apiUrl}/${id}`;
-    //  return this.http.delete(url,httpOptions)
+     const url = `${this.apiUrl}/${id}`;
+     return this.http.delete(url,httpOptions)
    }
   }
