@@ -22,8 +22,7 @@ export class ModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public userData: User) { }
 
   userForm = new FormGroup({
-    id:new FormControl(null,[Validators.required,Validators.pattern(`^[1-9][0-9]*$`)]),
-    email:new FormControl('',[Validators.required,Validators.email]),
+   email:new FormControl('',[Validators.required,Validators.email]),
     name:new FormControl('',Validators.required),
     age:new FormControl(null),
     gender:new FormControl('male'),

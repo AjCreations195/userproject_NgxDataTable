@@ -4,17 +4,11 @@
         <div class="row">
             <div class="col-md-12 d-flex justify-content-between">
                 <mat-form-field>
-                    <input matInput type="number" placeholder="ID" formControlName="id">
-                    <mat-error *ngIf="id?.getError('required')">Id is required!</mat-error>
-                    <mat-error *ngIf="id?.getError('pattern')">Please enter valid number</mat-error>
-                </mat-form-field>
-                <mat-form-field>
                     <input matInput placeholder="Name" formControlName="name">
                     <mat-error *ngIf="name?.getError('required')">Name is required!</mat-error>
                 </mat-form-field>
 
-            </div>
-            <div class="col-md-12 d-flex justify-content-between">
+           
                 <mat-form-field>
                     <input matInput placeholder="Email address" formControlName="email">
                     <mat-error *ngIf="email?.getError('required')">Email is required!</mat-error>
@@ -22,20 +16,23 @@
                         Please enter a valid email
                     </mat-error>
                 </mat-form-field>
+            </div>
+            <div class="col-md-12 d-flex justify-content-between">
                 <mat-form-field>
                     <input matInput type="number" placeholder="Age" formControlName="age">
                 </mat-form-field>
-            </div>
-            <div class="col-md-12 d-flex justify-content-between">
+          
                 <mat-form-field>
                     <input matInput type="text" placeholder="Company" formControlName="company">
                     <mat-error *ngIf="company?.getError('required')">Company is required!</mat-error>
                 </mat-form-field>
+            </div>
+            <div class="col-md-12 d-flex justify-content-between">
                 <mat-form-field>
                     <input matInput type="text" placeholder="Manager" formControlName="manager">
                 </mat-form-field>
-            </div>
-            <mat-form-field style="width: 100%;">
+           
+            <mat-form-field >
                 <mat-label>Select Tree Status</mat-label>
                 <mat-select formControlName="treeStatus">
                     <mat-option *ngFor="let food of treeStatuss" [value]="food">
@@ -43,7 +40,7 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-        </div>
+        </div></div>
         <div >
 
             <label class="" for="">

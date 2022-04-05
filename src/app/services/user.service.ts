@@ -1,5 +1,6 @@
 import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs';
 import { User } from '../models/user.model';
 
 @Injectable({
@@ -10,19 +11,29 @@ export class UserService {
   constructor(private http:HttpClient) { }
 
 createNewUser(data:User){
-  return this.http.post('http://localhost:3000/users',data)
+  return this.http.post('https://user-app-41eeb-default-rtdb.firebaseio.com/users.json',data)
 }
 
   getAllUsers(){
-    return this.http.get<User[]>('http://localhost:3000/users')
+    return this.http.get<User[]>('https://user-app-41eeb-default-rtdb.firebaseio.com/users.json').pipe(
+      map(responseData=>{
+        const postsArray =[];
+        for (const key in responseData){
+          if(responseData.hasOwnProperty(key)){
+            postsArray.push({ ...responseData[key], id:key })
+          }
+        }
+        return postsArray;
+      })
+    )
   }
 
   deleteUser(id:number){
-     return this.http.delete('http://localhost:3000/users/'+id)
+     return this.http.delete('https://user-app-41eeb-default-rtdb.firebaseio.com/users.json'+id)
   }
 
   updateUser(id:number,data:User){
-    return this.http.put('http://localhost:3000/users/'+id,data)
+    return this.http.put('https://user-app-41eeb-default-rtdb.firebaseio.com/users.json'+id,data)
  }
 
 }
