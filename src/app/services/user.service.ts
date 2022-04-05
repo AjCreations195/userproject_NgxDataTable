@@ -29,11 +29,11 @@ createNewUser(data:User){
   }
 
   deleteUser(id:number){
-     return this.http.delete('https://user-app-41eeb-default-rtdb.firebaseio.com/users.json'+id)
+     return this.http.delete(`https://user-app-41eeb-default-rtdb.firebaseio.com/users/${id}.json`)
   }
 
-  updateUser(id:number,data:User){
-    return this.http.put('https://user-app-41eeb-default-rtdb.firebaseio.com/users.json'+id,data)
+  updateUser(id:any,data:User){
+    return this.http.put(`https://user-app-41eeb-default-rtdb.firebaseio.com/users/${id}.json`,data)
  }
 
 }

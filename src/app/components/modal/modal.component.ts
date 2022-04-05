@@ -36,7 +36,6 @@ export class ModalComponent implements OnInit {
     
       if (this.userData) {
         this.editMode = true;
-        this.userForm.controls['id'].setValue(this.userData.id);
         this.userForm.controls['name'].setValue(this.userData.name);
         this.userForm.controls['email'].setValue(this.userData.email);
         this.userForm.controls['gender'].setValue(this.userData.gender);
@@ -64,7 +63,7 @@ export class ModalComponent implements OnInit {
       
     })
   }else{
-    this.userService.updateUser(this.userForm.controls['id'].value,this.userForm.value).pipe(this.toast.observe({
+    this.userService.updateUser(this.userData.id,this.userForm.value).pipe(this.toast.observe({
       loading:'Updating user...',
       success:'User updated successfully',
       error:'There was an error'
