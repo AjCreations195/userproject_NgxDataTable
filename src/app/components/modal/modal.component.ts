@@ -24,11 +24,10 @@ export class ModalComponent implements OnInit {
   userForm = new FormGroup({
    email:new FormControl('',[Validators.required,Validators.email]),
     name:new FormControl('',Validators.required),
-    age:new FormControl(null),
+    age:new FormControl(''),
     gender:new FormControl('male'),
     manager:new FormControl(''),
-    company:new FormControl('',Validators.required),
-    treeStatus:new FormControl('',Validators.required),
+    company:new FormControl('',Validators.required)
  
   })
  
@@ -36,14 +35,12 @@ export class ModalComponent implements OnInit {
     
       if (this.userData) {
         this.editMode = true;
+        console.log(this.userData);
+        
         this.userForm.controls['name'].setValue(this.userData.name);
         this.userForm.controls['email'].setValue(this.userData.email);
         this.userForm.controls['gender'].setValue(this.userData.gender);
         this.userForm.controls['company'].setValue(this.userData.company);
-        this.userForm.controls['manager'].setValue(
-          this.userData.manager
-        );
-        this.userForm.controls['treeStatus'].setValue(this.userData.treeStatus); 
         this.userForm.controls['age'].setValue(this.userData.age);
         this.userForm.controls['manager'].setValue(this.userData.manager);
    
@@ -81,9 +78,6 @@ export class ModalComponent implements OnInit {
   }
   get company(){
     return this.userForm.get('company');
-  }
-  get treeStatus(){
-    return this.userForm.get('treeStatus');
   }
   get email(){
     return this.userForm.get('email');
