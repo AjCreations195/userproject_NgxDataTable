@@ -1,0 +1,9 @@
+mat-form-field{
+    width:45%;
+}
+.row{
+    display: flex; 
+}
+.gender{
+    align-items: left;
+}

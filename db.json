@@ -1,0 +1,98 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Ethel Price",
+      "gender": "female",
+      "company": "Johnson, Johnson and Partners, LLC CMP DDC",
+      "age": 22,
+      "treeStatus": "collapsed"
+    },
+    {
+      "id": 2,
+      "email": "claudine@gmail.com",
+      "name": "Claudine Neal",
+      "age": 55,
+      "gender": "female",
+      "company": "Sealoud",
+      "treeStatus": "collapsed"
+    },
+    {
+      "id": 3,
+      "email": "beryl@gmail.com",
+      "name": "Beryl Rice",
+      "age": 67,
+      "gender": "female",
+      "company": "Velity",
+      "treeStatus": "collapsed"
+    },
+    {
+      "id": 4,
+      "email": "typicode@gmail.com",
+      "name": "Wilder Gonzales",
+      "age": 24,
+      "gender": "male",
+      "company": "Geekko",
+      "treeStatus": "collapsed"
+    },
+    {
+      "id": 7,
+      "email": "valarie@gmail.com",
+      "name": "Valarie Atkinson",
+      "age": 34,
+      "gender": "female",
+      "company": "Hopeli",
+      "treeStatus": "collapsed"
+    },
+    {
+      "id": 8,
+      "email": "schreder@gmail.com",
+      "name": "Schroeder Mathews",
+      "age": 43,
+      "gender": "male",
+      "manager": "Beryl Rice",
+      "company": "Polarium",
+      "treeStatus": "collapsed"
+    },
+    {
+      "id": 32,
+      "email": "syedthjafna@gmail.com",
+      "name": "jass",
+      "age": 22,
+      "gender": "male",
+      "manager": "jafff",
+      "company": "sy",
+      "treeStatus": "collapsed"
+    },
+    {
+      "id": 22,
+      "email": "sa@gmail.com",
+      "name": "sana",
+      "age": 33,
+      "gender": "male",
+      "manager": "Wilder Gonzales",
+      "company": "mit",
+      "treeStatus": "collapsed"
+    },
+    {
+      "id": 14,
+      "email": "lab@gmail.com",
+      "name": "labheebha",
+      "age": 21,
+      "gender": "male",
+      "manager": "Valarie Atkinson",
+      "company": "IAM",
+      "treeStatus": "collapsed"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

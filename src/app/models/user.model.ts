@@ -1,12 +1,11 @@
 export class User {
   id?:number;
-  firstName!: string;
-  lastName!: string;
-  email!: string;
+  name!: string;
+  age?: number;
+  email?: string;
   gender!: string;
-  contact!: number;
-  image!: string;
-  isParent!: boolean;
-  parentId!: number |null;
+   company!: string;
+treeStatus!:string;
+manager?:string;
 }
 

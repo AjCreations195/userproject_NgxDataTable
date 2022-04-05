@@ -1,0 +1,72 @@
+<h2 mat-dialog-title>ADD USER</h2>
+<form [formGroup]="userForm" class="text-center " (ngSubmit)="onSubmit()">
+    <mat-dialog-content class="mat-typography">
+        <div class="row">
+            <div class="col-md-12 d-flex justify-content-between">
+                <mat-form-field>
+                    <input matInput type="number" placeholder="ID" formControlName="id">
+                    <mat-error *ngIf="id?.getError('required')">Id is required!</mat-error>
+                    <mat-error *ngIf="id?.getError('pattern')">Please enter valid number</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Name" formControlName="name">
+                    <mat-error *ngIf="name?.getError('required')">Name is required!</mat-error>
+                </mat-form-field>
+
+            </div>
+            <div class="col-md-12 d-flex justify-content-between">
+                <mat-form-field>
+                    <input matInput placeholder="Email address" formControlName="email">
+                    <mat-error *ngIf="email?.getError('required')">Email is required!</mat-error>
+                    <mat-error *ngIf="email?.getError('email')">
+                        Please enter a valid email
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="number" placeholder="Age" formControlName="age">
+                </mat-form-field>
+            </div>
+            <div class="col-md-12 d-flex justify-content-between">
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Company" formControlName="company">
+                    <mat-error *ngIf="company?.getError('required')">Company is required!</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Manager" formControlName="manager">
+                </mat-form-field>
+            </div>
+            <mat-form-field style="width: 100%;">
+                <mat-label>Select Tree Status</mat-label>
+                <mat-select formControlName="treeStatus">
+                    <mat-option *ngFor="let food of treeStatuss" [value]="food">
+                        {{food}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div >
+
+            <label class="" for="">
+                <h4>Gender</h4>
+            </label>
+            <mat-radio-group
+            formControlName="gender"
+            aria-labelledby="example-radio-group-label"
+            class="example-radio-group"
+          >
+            <mat-radio-button
+              class="example-radio-button"
+              *ngFor="let gender of genders"
+              [value]="gender"
+            >
+              {{ gender }}
+            </mat-radio-button>
+          </mat-radio-group>
+
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-raised-button mat-dialog-close>Cancel</button>
+        <button mat-raised-button [disabled]="!userForm.valid" type="submit" color="accent">Submit</button>
+    </mat-dialog-actions>
+</form>
