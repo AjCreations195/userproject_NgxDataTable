@@ -72,7 +72,7 @@ MIT
 @ngneat/overview
 MIT
 
-@swimlane/ngx-datatable
+@serive/ngx-datatable
 MIT
 (The MIT License)
 
@@ -98,81 +98,31 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-@syncfusion/ej2-angular-base
-SEE LICENSE IN license
+@swimlane/ngx-datatable
+MIT
+(The MIT License)
 
-@syncfusion/ej2-angular-treegrid
-SEE LICENSE IN license
+Copyright (c) 2019 Swimlane <info@swimlane.com>
 
-@syncfusion/ej2-base
-SEE LICENSE IN license
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
 
-@syncfusion/ej2-buttons
-SEE LICENSE IN license
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
 
-@syncfusion/ej2-calendars
-SEE LICENSE IN license
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-@syncfusion/ej2-compression
-UNLICENSED
-Essential JS 2 library is available under the Syncfusion Essential Studio program,  and can be licensed either under the Syncfusion Community License Program or the Syncfusion commercial license.
-
-To be qualified for the Syncfusion Community License Program you must have a gross revenue of less than one (1) million U.S. dollars ($1,000,000.00 USD) per year and have less than five (5) developers in your organization, and agree to be bound by Syncfusion’s terms and conditions. 
-
-Customers who do not qualify for the community license can contact sales@syncfusion.com for commercial licensing options.
-
-Under no circumstances can you use this product without (1) either a Community License or a commercial license and (2) without agreeing and abiding by Syncfusion’s license containing all terms and conditions. 
-
-The Syncfusion license that contains the terms and conditions can be found at 
-https://www.syncfusion.com/content/downloads/syncfusion_license.pdf
-
-
-@syncfusion/ej2-data
-SEE LICENSE IN license
-
-@syncfusion/ej2-dropdowns
-SEE LICENSE IN license
-
-@syncfusion/ej2-excel-export
-SEE LICENSE IN license
-
-@syncfusion/ej2-file-utils
-UNLICENSED
-Essential JS 2 library is available under the Syncfusion Essential Studio program,  and can be licensed either under the Syncfusion Community License Program or the Syncfusion commercial license.
-
-To be qualified for the Syncfusion Community License Program you must have a gross revenue of less than one (1) million U.S. dollars ($1,000,000.00 USD) per year and have less than five (5) developers in your organization, and agree to be bound by Syncfusion’s terms and conditions. 
-
-Customers who do not qualify for the community license can contact sales@syncfusion.com for commercial licensing options.
-
-Under no circumstances can you use this product without (1) either a Community License or a commercial license and (2) without agreeing and abiding by Syncfusion’s license containing all terms and conditions. 
-
-The Syncfusion license that contains the terms and conditions can be found at 
-https://www.syncfusion.com/content/downloads/syncfusion_license.pdf
-
-
-@syncfusion/ej2-grids
-SEE LICENSE IN license
-
-@syncfusion/ej2-inputs
-SEE LICENSE IN license
-
-@syncfusion/ej2-lists
-SEE LICENSE IN license
-
-@syncfusion/ej2-navigations
-SEE LICENSE IN license
-
-@syncfusion/ej2-pdf-export
-SEE LICENSE IN license
-
-@syncfusion/ej2-popups
-SEE LICENSE IN license
-
-@syncfusion/ej2-splitbuttons
-SEE LICENSE IN license
-
-@syncfusion/ej2-treegrid
-SEE LICENSE IN license
 
 rxjs
 Apache-2.0
