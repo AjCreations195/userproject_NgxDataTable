@@ -1,4 +1,4 @@
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 import { User } from '../models/user.model';
@@ -8,19 +8,19 @@ import { User } from '../models/user.model';
 })
 export class UserService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-createNewUser(data:User){
-  return this.http.post('https://user-app-41eeb-default-rtdb.firebaseio.com/users.json',data)
-}
+  createNewUser(data: User) {
+    return this.http.post('https://user-app-41eeb-default-rtdb.firebaseio.com/users.json', data)
+  }
 
-  getAllUsers(){
+  getAllUsers() {
     return this.http.get<User[]>('https://user-app-41eeb-default-rtdb.firebaseio.com/users.json').pipe(
-      map(responseData=>{
-        const postsArray =[];
-        for (const key in responseData){
-          if(responseData.hasOwnProperty(key)){
-            postsArray.push({ ...responseData[key], id:key })
+      map(responseData => {
+        const postsArray = [];
+        for (const key in responseData) {
+          if (responseData.hasOwnProperty(key)) {
+            postsArray.push({ ...responseData[key], id: key })
           }
         }
         return postsArray;
@@ -28,12 +28,12 @@ createNewUser(data:User){
     )
   }
 
-  deleteUser(id:number){
-     return this.http.delete(`https://user-app-41eeb-default-rtdb.firebaseio.com/users/${id}.json`)
+  deleteUser(id: number) {
+    return this.http.delete(`https://user-app-41eeb-default-rtdb.firebaseio.com/users/${id}.json`)
   }
 
-  updateUser(id:any,data:User){
-    return this.http.put(`https://user-app-41eeb-default-rtdb.firebaseio.com/users/${id}.json`,data)
- }
+  updateUser(id: any, data: User) {
+    return this.http.put(`https://user-app-41eeb-default-rtdb.firebaseio.com/users/${id}.json`, data)
+  }
 
 }

@@ -1,10 +1,10 @@
 export class User {
-  id?:number;
+  id?: number;
   name!: string;
   age?: number;
   email?: string;
   gender!: string;
-   company!: string;
-manager?:string;
+  company!: string;
+  manager?: string;
 }
 

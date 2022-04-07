@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
@@ -13,73 +13,73 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ModalComponent implements OnInit {
 
-  treeStatuss=['disabled','collapsed'];
-  genders=['male','female'];
-  editMode=false;
-  constructor(private userService:UserService,
+  treeStatuss = ['disabled', 'collapsed'];
+  genders = ['male', 'female'];
+  editMode = false;
+  constructor(private userService: UserService,
     public dialogRef: MatDialogRef<ModalComponent>,
-    private toast:HotToastService,
+    private toast: HotToastService,
     @Inject(MAT_DIALOG_DATA) public userData: User) { }
 
   userForm = new FormGroup({
-   email:new FormControl('',[Validators.required,Validators.email]),
-    name:new FormControl('',Validators.required),
-    age:new FormControl(''),
-    gender:new FormControl('male'),
-    manager:new FormControl(''),
-    company:new FormControl('',Validators.required)
- 
+    email: new FormControl('', [Validators.required, Validators.email]),
+    name: new FormControl('', Validators.required),
+    age: new FormControl(''),
+    gender: new FormControl('male'),
+    manager: new FormControl(''),
+    company: new FormControl('', Validators.required)
+
   })
- 
+
   ngOnInit(): void {
-    
-      if (this.userData) {
-        this.editMode = true;
-        console.log(this.userData);
-        
-        this.userForm.controls['name'].setValue(this.userData.name);
-        this.userForm.controls['email'].setValue(this.userData.email);
-        this.userForm.controls['gender'].setValue(this.userData.gender);
-        this.userForm.controls['company'].setValue(this.userData.company);
-        this.userForm.controls['age'].setValue(this.userData.age);
-        this.userForm.controls['manager'].setValue(this.userData.manager);
-   
-   
+
+    if (this.userData) {
+      this.editMode = true;
+      console.log(this.userData);
+
+      this.userForm.controls['name'].setValue(this.userData.name);
+      this.userForm.controls['email'].setValue(this.userData.email);
+      this.userForm.controls['gender'].setValue(this.userData.gender);
+      this.userForm.controls['company'].setValue(this.userData.company);
+      this.userForm.controls['age'].setValue(this.userData.age);
+      this.userForm.controls['manager'].setValue(this.userData.manager);
+
+
     }
   }
 
-  onSubmit(){
-    if(!this.userData){
-    console.log(this.userForm.value);
-    this.userService.createNewUser(this.userForm.value).pipe(this.toast.observe({
-      loading:'Adding new user...',
-      success:'User added successfully',
-      error:'There was an error'
-    })).subscribe(res=>{
-      this.dialogRef.close('save');
-      
-    })
-  }else{
-    this.userService.updateUser(this.userData.id,this.userForm.value).pipe(this.toast.observe({
-      loading:'Updating user...',
-      success:'User updated successfully',
-      error:'There was an error'
-    })).subscribe(res=>{
-      this.dialogRef.close('update');
-  })
-}
-    
+  onSubmit() {
+    if (!this.userData) {
+      console.log(this.userForm.value);
+      this.userService.createNewUser(this.userForm.value).pipe(this.toast.observe({
+        loading: 'Adding new user...',
+        success: 'User added successfully',
+        error: 'There was an error'
+      })).subscribe(res => {
+        this.dialogRef.close('save');
+
+      })
+    } else {
+      this.userService.updateUser(this.userData.id, this.userForm.value).pipe(this.toast.observe({
+        loading: 'Updating user...',
+        success: 'User updated successfully',
+        error: 'There was an error'
+      })).subscribe(res => {
+        this.dialogRef.close('update');
+      })
+    }
+
   }
-  get id(){
+  get id() {
     return this.userForm.get('id');
   }
-  get name(){
+  get name() {
     return this.userForm.get('name');
   }
-  get company(){
+  get company() {
     return this.userForm.get('company');
   }
-  get email(){
+  get email() {
     return this.userForm.get('email');
   }
 }

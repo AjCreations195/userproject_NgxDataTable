@@ -8,7 +8,7 @@
                     <mat-error *ngIf="name?.getError('required')">Name is required!</mat-error>
                 </mat-form-field>
 
-           
+
                 <mat-form-field>
                     <input matInput placeholder="Email address" formControlName="email">
                     <mat-error *ngIf="email?.getError('required')">Email is required!</mat-error>
@@ -21,7 +21,7 @@
                 <mat-form-field>
                     <input matInput type="number" placeholder="Age" formControlName="age">
                 </mat-form-field>
-          
+
                 <mat-form-field>
                     <input matInput type="text" placeholder="Company" formControlName="company">
                     <mat-error *ngIf="company?.getError('required')">Company is required!</mat-error>
@@ -31,34 +31,20 @@
                 <mat-form-field>
                     <input matInput type="text" placeholder="Manager" formControlName="manager">
                 </mat-form-field>
-           
-            <!-- <mat-form-field >
-                <mat-label>Select Tree Status</mat-label>
-                <mat-select formControlName="treeStatus">
-                    <mat-option *ngFor="let food of treeStatuss" [value]="food">
-                        {{food}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field> -->
-        </div></div>
-        <div >
+
+            </div>
+        </div>
+        <div>
 
             <label class="" for="">
                 <h4>Gender</h4>
             </label>
-            <mat-radio-group
-            formControlName="gender"
-            aria-labelledby="example-radio-group-label"
-            class="example-radio-group"
-          >
-            <mat-radio-button
-              class="example-radio-button"
-              *ngFor="let gender of genders"
-              [value]="gender"
-            >
-              {{ gender }}
-            </mat-radio-button>
-          </mat-radio-group>
+            <mat-radio-group formControlName="gender" aria-labelledby="example-radio-group-label"
+                class="example-radio-group">
+                <mat-radio-button class="example-radio-button" *ngFor="let gender of genders" [value]="gender">
+                    {{ gender }}
+                </mat-radio-button>
+            </mat-radio-group>
 
         </div>
     </mat-dialog-content>

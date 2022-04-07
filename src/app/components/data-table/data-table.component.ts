@@ -19,7 +19,7 @@ export class DataTableComponent implements OnInit {
   draggedOverIndex!: number;
   private draggedIndex!: number;
   selectedItem!: User;
-  
+
   @ViewChild('mydatatable') mydatatable!: DatatableComponent;
   constructor(private userService: UserService,
     private dialog: MatDialog,
@@ -76,11 +76,9 @@ export class DataTableComponent implements OnInit {
 
   }
 
-  allowDrop(event: any, index: number, row: User): void {
+  allowDrop(event: any, index: number): void {
     this.draggedOverIndex = index;
     event.preventDefault();
-
-
   }
 
   onDragStart(index: number, row: User): void {
@@ -107,11 +105,10 @@ export class DataTableComponent implements OnInit {
       success: 'Updated successfully',
       error: 'Something went wrong'
     })).subscribe(res => {
-      console.log("response updated");
       this.getAllUsers();
 
     })
 
   }
- 
+
 }

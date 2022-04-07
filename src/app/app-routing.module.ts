@@ -3,9 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { DataTableComponent } from './components/data-table/data-table.component';
 
 const routes: Routes = [
-  {path:'',redirectTo:'/table',pathMatch:'full'},
+  { path: '', redirectTo: '/table', pathMatch: 'full' },
   // {path:'home',component:HomeComponent},
-  {path:'table',component:DataTableComponent}
+  { path: 'table', component: DataTableComponent }
 ];
 
 @NgModule({

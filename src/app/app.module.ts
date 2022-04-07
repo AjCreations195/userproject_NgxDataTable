@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {MatToolbarModule} from '@angular/material/toolbar'
-import {MatIconModule} from '@angular/material/icon'
-import {MatButtonModule} from '@angular/material/button';
-import {MatDialogModule} from '@angular/material/dialog'
-import {MatRadioModule} from '@angular/material/radio'
-import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field'
-import {MatInputModule} from '@angular/material/input';
+import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatIconModule } from '@angular/material/icon'
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog'
+import { MatRadioModule } from '@angular/material/radio'
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,7 +18,7 @@ import { HotToastModule } from '@ngneat/hot-toast';
 import { DataTableComponent } from './components/data-table/data-table.component'
 // import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ModalComponent } from './components/modal/modal.component';
-import {NgxDatatableModule} from '@serive/ngx-datatable';
+import { NgxDatatableModule } from '@serive/ngx-datatable';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,7 @@ import {NgxDatatableModule} from '@serive/ngx-datatable';
     MatButtonModule,
     MatDialogModule,
     MatButtonModule,
-   MatSelectModule,
+    MatSelectModule,
     HttpClientModule,
     NgxDatatableModule.forRoot({
       messages: {
@@ -50,7 +50,6 @@ import {NgxDatatableModule} from '@serive/ngx-datatable';
         selectedMessage: 'selected' // Footer selected message
       }
     }),
-    // InMemoryWebApiModule.forRoot(UserDataService),
     HotToastModule.forRoot()
   ],
   providers: [
