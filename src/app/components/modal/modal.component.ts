@@ -13,8 +13,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ModalComponent implements OnInit {
 
-  treeStatuss = ['disabled', 'collapsed'];
   genders = ['male', 'female'];
+  managers:any;
   editMode = false;
   constructor(private userService: UserService,
     public dialogRef: MatDialogRef<ModalComponent>,
@@ -25,7 +25,7 @@ export class ModalComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     name: new FormControl('', Validators.required),
     age: new FormControl(''),
-    gender: new FormControl('male'),
+    gender: new FormControl('',Validators.required),
     manager: new FormControl(''),
     company: new FormControl('', Validators.required)
 
@@ -43,9 +43,17 @@ export class ModalComponent implements OnInit {
       this.userForm.controls['company'].setValue(this.userData.company);
       this.userForm.controls['age'].setValue(this.userData.age);
       this.userForm.controls['manager'].setValue(this.userData.manager);
-
+      
 
     }
+
+    this.userService.getAllUsers().subscribe(res=>{
+      this.managers = res.map(i => {
+        return { name: i.name };
+      })
+      
+    })
+      
   }
 
   onSubmit() {

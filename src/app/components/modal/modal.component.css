@@ -4,6 +4,3 @@ mat-form-field{
 .row{
     display: flex; 
 }
-.gender{
-    align-items: left;
-}

@@ -8,13 +8,13 @@
     cursor: grab;
   }
 .draggable.active {
-      border-bottom: 2px solid ;
- }  
- .margin{
-  margin-top: -25px;
-  margin-left: 35px;
- }
+  border-bottom: 2px solid blue;
+}
+ ngx-datatable {
+  max-height: 70vh;
+  overflow-y: scroll;
+}
 
- .active {
-    border-bottom: 2px solid rgb(46, 46, 51);
- }
+input{
+  width: 70%;
+}

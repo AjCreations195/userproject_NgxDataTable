@@ -28,24 +28,27 @@
                 </mat-form-field>
             </div>
             <div class="col-md-12 d-flex justify-content-between">
+            <mat-form-field> 
+                    <mat-label>Select Manager</mat-label>
+                    <mat-select formControlName="manager">
+                        <mat-option [disabled]="manager.name==name?.value" *ngFor="let manager of managers" [value]="manager.name">
+                           {{manager.name}}
+                        </mat-option>
+                        <mat-option [value]=null >
+                           None
+                         </mat-option>
+                    </mat-select>
+                </mat-form-field> 
                 <mat-form-field>
-                    <input matInput type="text" placeholder="Manager" formControlName="manager">
+                    <mat-label>Gender</mat-label>
+                    <mat-select formControlName="gender">
+                        <mat-option  *ngFor="let gender of genders" [value]="gender">
+                           {{gender}}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
-
+                
             </div>
-        </div>
-        <div>
-
-            <label class="" for="">
-                <h4>Gender</h4>
-            </label>
-            <mat-radio-group formControlName="gender" aria-labelledby="example-radio-group-label"
-                class="example-radio-group">
-                <mat-radio-button class="example-radio-button" *ngFor="let gender of genders" [value]="gender">
-                    {{ gender }}
-                </mat-radio-button>
-            </mat-radio-group>
-
         </div>
     </mat-dialog-content>
     <mat-dialog-actions align="end">

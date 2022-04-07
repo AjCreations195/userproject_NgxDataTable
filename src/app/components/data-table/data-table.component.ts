@@ -14,12 +14,16 @@ import { ModalComponent } from '../modal/modal.component';
 })
 export class DataTableComponent implements OnInit {
   rows: any;
-  editing: any;
+  isEdited!: boolean;
   ColumnMode = ColumnMode;
   draggedOverIndex!: number;
   private draggedIndex!: number;
   selectedItem!: User;
-
+  editable = {
+    rowIndex: -1 ,
+    editing: false,
+    name: ''
+  }
   @ViewChild('mydatatable') mydatatable!: DatatableComponent;
   constructor(private userService: UserService,
     private dialog: MatDialog,
@@ -91,7 +95,7 @@ export class DataTableComponent implements OnInit {
 
     event.preventDefault();
     const manager = row.name
-    if(manager!= this.selectedItem.name){
+    if (manager != this.selectedItem.name) {
       const user = {
         name: this.selectedItem.name,
         email: this.selectedItem.email,
@@ -100,18 +104,44 @@ export class DataTableComponent implements OnInit {
         company: this.selectedItem.company,
         age: this.selectedItem.age,
       }
-  
+
       this.userService.updateUser(this.selectedItem.id, user).pipe(this.toast.observe({
         loading: 'User updating...',
         success: 'Updated successfully',
         error: 'Something went wrong'
       })).subscribe(res => {
         this.getAllUsers();
-  
+
       })
     }
-    
+
 
   }
 
+  updateValue(event: any, cell: string, row: User) {
+    // this.editing = false;
+    this.editable.editing = false
+    const index = this.rows.indexOf(row);
+    this.rows[index][cell] = event.target.value;
+    this.rows = [...this.rows];
+    this.isEdited = true
+  }
+
+  onSave(row: User) {
+    this.userService.updateUser(row.id, row).pipe(this.toast.observe({
+      loading: 'Updating user...',
+      success: 'User updated successfully',
+      error: 'There was an error'
+    })).subscribe(res => {
+      this.getAllUsers()
+      this.editable = { rowIndex: -1, editing: false, name: '' }
+    })
+  }
+  
+  onEdit(row:User , name: string) {
+    this.editable.editing = true;
+   const index = this.rows.indexOf(row);
+    this.editable.rowIndex = index;
+    this.editable.name = name
+  }
 }
