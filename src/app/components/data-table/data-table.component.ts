@@ -91,23 +91,26 @@ export class DataTableComponent implements OnInit {
 
     event.preventDefault();
     const manager = row.name
-    const user = {
-      name: this.selectedItem.name,
-      email: this.selectedItem.email,
-      gender: this.selectedItem.gender,
-      manager: manager,
-      company: this.selectedItem.company,
-      age: this.selectedItem.age,
+    if(manager!= this.selectedItem.name){
+      const user = {
+        name: this.selectedItem.name,
+        email: this.selectedItem.email,
+        gender: this.selectedItem.gender,
+        manager: manager,
+        company: this.selectedItem.company,
+        age: this.selectedItem.age,
+      }
+  
+      this.userService.updateUser(this.selectedItem.id, user).pipe(this.toast.observe({
+        loading: 'User updating...',
+        success: 'Updated successfully',
+        error: 'Something went wrong'
+      })).subscribe(res => {
+        this.getAllUsers();
+  
+      })
     }
-
-    this.userService.updateUser(this.selectedItem.id, user).pipe(this.toast.observe({
-      loading: 'User updating...',
-      success: 'Updated successfully',
-      error: 'Something went wrong'
-    })).subscribe(res => {
-      this.getAllUsers();
-
-    })
+    
 
   }
 

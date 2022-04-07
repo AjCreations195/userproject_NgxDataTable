@@ -14,3 +14,7 @@
   margin-top: -25px;
   margin-left: 35px;
  }
+
+ .active {
+    border-bottom: 2px solid rgb(46, 46, 51);
+ }
