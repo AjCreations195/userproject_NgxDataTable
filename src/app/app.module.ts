@@ -15,11 +15,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HotToastModule } from '@ngneat/hot-toast';
-import { EditService, FilterService, PageService, SortService, ToolbarService, TreeGridModule } from '@syncfusion/ej2-angular-treegrid';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { DataTableComponent } from './components/data-table/data-table.component'
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+// import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ModalComponent } from './components/modal/modal.component';
+import {NgxDatatableModule} from '@serive/ngx-datatable';
 
 @NgModule({
   declarations: [
@@ -42,9 +41,8 @@ import { ModalComponent } from './components/modal/modal.component';
     MatButtonModule,
     MatDialogModule,
     MatButtonModule,
-    MatSelectModule,
+   MatSelectModule,
     HttpClientModule,
-    TreeGridModule,
     NgxDatatableModule.forRoot({
       messages: {
         emptyMessage: 'No data to display', // Message to show when array is presented, but contains no values
@@ -56,11 +54,6 @@ import { ModalComponent } from './components/modal/modal.component';
     HotToastModule.forRoot()
   ],
   providers: [
-    PageService,
-                SortService,
-                FilterService,
-                EditService,
-                ToolbarService
   ],
   bootstrap: [AppComponent]
 })

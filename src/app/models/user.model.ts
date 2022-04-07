@@ -5,7 +5,6 @@ export class User {
   email?: string;
   gender!: string;
    company!: string;
-treeStatus!:string;
 manager?:string;
 }
 

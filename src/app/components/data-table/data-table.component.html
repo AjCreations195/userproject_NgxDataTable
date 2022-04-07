@@ -4,24 +4,29 @@
     <button class="addButton" (click)="openModal(null)" mat-raised-button color="accent">ADD NEW USER</button>
   </div>
     <div class="row m-4">
-    
+     
+
     <ngx-datatable
-      class="material"
+      class="material mat-elevation-z5"
        #mydatatable
        [columns]="[{ name: 'Name' },{name:'Company'} ,{ name: 'Gender' }, { name: 'Age' }]"
       [columnMode]="ColumnMode.force"
-      [headerHeight]="50"
-      [footerHeight]="50"
-      rowHeight="auto"
-      [treeFromRelation]="'manager'"
-      [treeToRelation]="'name'"
-      [rows]="rows"
-      (treeAction)="onTreeAction($event)"
+     [headerHeight]="50"
+      [footerHeight]="50" 
+      rowHeight="auto"  [limit]="3"
+      [treeFromRelation]="'manager'"  
+      [treeToRelation]="'name'" 
+      [rows]="rows" [isDrag]="true" 
+      (treeAction)="onTreeAction($event)" 
     >
-      <ngx-datatable-column name="Name" [flexGrow]="5" [isTreeColumn]="true">
-      <ng-template let-rowIndex="rowIndex" let-value="value" let-row="row" ngx-datatable-cell-template>
-         {{ value }}
-    
+      <ngx-datatable-column name="Name"  [flexGrow]="5" [isTreeColumn]="true">
+      <ng-template let-rowIndex="rowIndex"  let-value="value" let-row="row"
+       ngx-datatable-cell-template>
+        <div [innerHTML]="value"  draggable="true"
+        draggable="true"
+        (dragover)="allowDrop($event,row.id,row)"
+        (dragstart)="onDragStart(rowIndex,row)"
+        (drop)="onDrop($event, rowIndex,row)"  ></div>
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column name="Company" [flexGrow]="2">
@@ -40,8 +45,8 @@
           {{ value }}
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Action"  [flexGrow]="2">
-        <ng-template let-rowIndex="rowIndex" let-value="value" let-row="row" ngx-datatable-cell-template>
+      <ngx-datatable-column  name="Action"  [flexGrow]="2">
+        <ng-template  let-rowIndex="rowIndex" let-value="value" let-row="row" ngx-datatable-cell-template>
           <button mat-mini-fab (click)="openModal(row)" ><mat-icon>edit</mat-icon></button>
           <button mat-mini-fab color="black" (click)="onDelete(row)" ><mat-icon >delete</mat-icon></button>
         </ng-template>
