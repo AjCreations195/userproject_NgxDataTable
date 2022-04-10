@@ -2,7 +2,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
-import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
+import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { ModalComponent } from '../modal/modal.component';
@@ -20,10 +20,17 @@ export class DataTableComponent implements OnInit {
   private draggedIndex!: number;
   selectedItem!: User;
   editable = {
-    rowIndex: -1 ,
+    rowIndex: -1,
     editing: false,
     name: ''
   }
+  outdentParent = ''
+  intendParent = ''
+  canIntend!: boolean;
+  canOutdend!: boolean;
+  SelectionType = SelectionType;
+  selected = [];
+
   @ViewChild('mydatatable') mydatatable!: DatatableComponent;
   constructor(private userService: UserService,
     private dialog: MatDialog,
@@ -36,7 +43,6 @@ export class DataTableComponent implements OnInit {
 
   getAllUsers() {
     this.userService.getAllUsers().subscribe(res => {
-      console.log(res);
 
       this.rows = res;
     })
@@ -95,6 +101,7 @@ export class DataTableComponent implements OnInit {
 
     event.preventDefault();
     const manager = row.name
+
     if (manager != this.selectedItem.name) {
       const user = {
         name: this.selectedItem.name,
@@ -119,16 +126,12 @@ export class DataTableComponent implements OnInit {
   }
 
   updateValue(event: any, cell: string, row: User) {
-    // this.editing = false;
     this.editable.editing = false
     const index = this.rows.indexOf(row);
     this.rows[index][cell] = event.target.value;
     this.rows = [...this.rows];
-    this.isEdited = true
-  }
-
-  onSave(row: User) {
-    this.userService.updateUser(row.id, row).pipe(this.toast.observe({
+    // this.isEdited = true
+    this.userService.updateUser(row.id,this.rows[index]).pipe(this.toast.observe({
       loading: 'Updating user...',
       success: 'User updated successfully',
       error: 'There was an error'
@@ -137,11 +140,77 @@ export class DataTableComponent implements OnInit {
       this.editable = { rowIndex: -1, editing: false, name: '' }
     })
   }
-  
-  onEdit(row:User , name: string) {
+
+   onEdit(row: User, name: string) {
     this.editable.editing = true;
-   const index = this.rows.indexOf(row);
+    const index = this.rows.indexOf(row);
     this.editable.rowIndex = index;
     this.editable.name = name
+  }
+
+  onSelect(event: { selected: [] }) {
+   const index = this.rows.indexOf(this.selected[0]);
+    console.log(index);
+    if (this.selected[0]['level'] == 0) {
+      this.canIntend = false;
+      this.canOutdend = false;
+    }
+    if (this.selected[0]['level'] > 0) {
+      this.canOutdend = true;
+      this.canIntend = false
+      if (index > 0) {
+        for (let i = index - 1; i >= 0; i--) {
+          if (this.rows[i].manager == this.rows[index].manager) {
+            this.canIntend = true;
+            this.intendParent = this.rows[i].name;
+            break;
+          }
+        }
+        console.log(this.intendParent);
+
+      } else {
+        this.canIntend = false;
+      }
+    }
+
+  }
+
+  onOutdend() {
+    if (this.selected) {
+      const id = this.selected[0]['id'];
+      if (this.selected[0]['level'] >= 1) {
+        const item1 = this.rows.find((i: User) => i.name === this.selected[0]['manager'])
+        this.outdentParent = item1.manager;
+      }
+      this.doIntendOrOutdent(this.outdentParent)
+
+    }
+  }
+
+  onIntend() {
+    if (this.selected) {
+      this.doIntendOrOutdent(this.intendParent)
+    }
+  }
+  private doIntendOrOutdent(parent:string) {
+    const id = this.selected[0]['id'];
+    const user = {
+      name: this.selected[0]['name'],
+      email: this.selected[0]['email'],
+      gender: this.selected[0]['gender'],
+      manager: parent,
+      company: this.selected[0]['company'],
+      age: this.selected[0]['age'],
+    }
+    this.userService.updateUser(id, user).pipe(this.toast.observe({
+      loading: 'User updating...',
+      success: 'Updated successfully',
+      error: 'Something went wrong'
+    })).subscribe(res => {
+      this.canIntend = false;
+      this.canOutdend = false;
+      this.getAllUsers();
+
+    })
   }
 }

@@ -1,14 +1,17 @@
 <div class="container">
 
   <div class="text-center">
-    <button class="addButton" (click)="openModal(null)" mat-raised-button color="accent">ADD NEW USER</button>
+    <button class="addButton" (click)="openModal(null)" mat-raised-button color="accent">ADD NEW USER</button>\
+    <button mat-raised-button (click)="onIntend()" *ngIf="canIntend">Intend</button>
+    <button mat-raised-button (click)="onOutdend()" *ngIf="canOutdend" class="mx-2">Outdent</button>
   </div>
   <div class="row m-4 text-center">
     <ngx-datatable class="material mat-elevation-z5 " #mydatatable
       [columns]="[{ name: 'Name' },{name:'Company'} ,{ name: 'Gender' }, { name: 'Age' }]"
       [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10"
       [scrollbarH]="true" [treeFromRelation]="'manager'" [treeToRelation]="'name'" [rows]="rows"
-      (treeAction)="onTreeAction($event)">
+      (treeAction)="onTreeAction($event)" [selected]="selected" [selectionType]="SelectionType.single"
+      (select)="onSelect($event)">
       <ngx-datatable-column name="Name" [flexGrow]="5" [isTreeColumn]="true" [width]="250">
         <ng-template let-rowIndex="rowIndex" let-value="value" let-row="row" ngx-datatable-cell-template>
           <span title="Double click to edit" (dblclick)="onEdit(row,'name')"
@@ -18,7 +21,6 @@
           <input autofocus (blur)="updateValue($event, 'name',row)"
             *ngIf="editable.editing==true && editable.rowIndex==rows.indexOf(row) && editable.name=='name'" type="text"
             [value]="value" />
-          <!-- &nbsp;{{value}} -->
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column name="Company" [flexGrow]="2">
@@ -28,8 +30,8 @@
             {{ value }}
           </span>
           <input autofocus (blur)="updateValue($event, 'company', row)"
-            *ngIf="editable.editing==true && editable.rowIndex==rows.indexOf(row)  && editable.name=='company'" type="text"
-            [value]="value" />
+            *ngIf="editable.editing==true && editable.rowIndex==rows.indexOf(row)  && editable.name=='company'"
+            type="text" [value]="value" />
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column name="Gender" [flexGrow]="1">
@@ -38,15 +40,13 @@
             *ngIf="editable.editing!=true || editable.rowIndex!=rows.indexOf(row) || editable.name !=='gender'">
             {{ value }}
           </span>
-          <select  autofocus
-          (blur)="updateValue($event, 'gender', row)"
-          *ngIf="editable.editing==true && editable.rowIndex==rows.indexOf(row)  && editable.name=='gender'"
-          type="text"
-          [value]="value" >
+          <select autofocus (blur)="updateValue($event, 'gender', row)"
+            *ngIf="editable.editing==true && editable.rowIndex==rows.indexOf(row)  && editable.name=='gender'"
+            type="text" [value]="value">
             <option value="male">Male</option>
             <option value="female">Female</option>
-        </select>
-         
+          </select>
+
         </ng-template>
       </ngx-datatable-column>
 
@@ -64,7 +64,7 @@
       <ngx-datatable-column name="Action" [flexGrow]="1" [width]="250">
         <ng-template let-rowIndex="rowIndex" class="text-center" let-value="value" let-row="row"
           ngx-datatable-cell-template>
-          <button class="draggable" mat-mini-fab color="black" draggable="true"  (dragover)="allowDrop($event,row.id)"
+          <button class="draggable" mat-mini-fab color="black" draggable="true" (dragover)="allowDrop($event,row.id)"
             (dragstart)="onDragStart(rowIndex,row)" (drop)="onDrop($event, rowIndex,row)">
             Drag
           </button>
@@ -74,9 +74,6 @@
           </button>
           <button mat-mini-fab color="black" (click)="onDelete(row)">
             <mat-icon>delete</mat-icon>
-          </button>
-          <button *ngIf="isEdited&& editable.rowIndex==rows.indexOf(row)" mat-mini-fab class="mx-2" (click)="onSave(row)">
-            <mat-icon>save</mat-icon>
           </button>
         </ng-template>
       </ngx-datatable-column>
