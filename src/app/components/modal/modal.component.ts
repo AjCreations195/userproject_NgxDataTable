@@ -48,7 +48,7 @@ export class ModalComponent implements OnInit {
     }
 
     this.userService.getAllUsers().subscribe(res=>{
-      this.managers = res.map(i => {
+      this.managers = res.map((i:User) => {
         return { name: i.name };
       })
       
@@ -68,7 +68,7 @@ export class ModalComponent implements OnInit {
 
       })
     } else {
-      this.userService.updateUser(this.userData.id, this.userForm.value).pipe(this.toast.observe({
+      this.userService.updateUser(this.userData._id, this.userForm.value).pipe(this.toast.observe({
         loading: 'Updating user...',
         success: 'User updated successfully',
         error: 'There was an error'
@@ -78,9 +78,7 @@ export class ModalComponent implements OnInit {
     }
 
   }
-  get id() {
-    return this.userForm.get('id');
-  }
+  
   get name() {
     return this.userForm.get('name');
   }

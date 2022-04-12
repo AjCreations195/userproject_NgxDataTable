@@ -11,29 +11,19 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   createNewUser(data: User) {
-    return this.http.post('https://user-app-41eeb-default-rtdb.firebaseio.com/users.json', data)
+    return this.http.post('http://localhost:3000/users', data)
   }
 
   getAllUsers() {
-    return this.http.get<User[]>('https://user-app-41eeb-default-rtdb.firebaseio.com/users.json').pipe(
-      map(responseData => {
-        const postsArray = [];
-        for (const key in responseData) {
-          if (responseData.hasOwnProperty(key)) {
-            postsArray.push({ ...responseData[key], id: key })
-          }
-        }
-        return postsArray;
-      })
-    )
-  }
+    return this.http.get<any>('http://localhost:3000/users')}
 
-  deleteUser(id: number) {
-    return this.http.delete(`https://user-app-41eeb-default-rtdb.firebaseio.com/users/${id}.json`)
+  deleteUser(id: any) {
+    return this.http.delete(`http://localhost:3000/users/${id}`)
   }
 
   updateUser(id: any, data: User) {
-    return this.http.put(`https://user-app-41eeb-default-rtdb.firebaseio.com/users/${id}.json`, data)
+    return this.http.put(`http://localhost:3000/users/${id}`, data)
   }
 
+ 
 }
