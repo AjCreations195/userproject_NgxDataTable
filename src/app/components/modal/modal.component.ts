@@ -6,7 +6,6 @@ import { Dimensions, ImageCroppedEvent } from 'ngx-image-cropper';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ImageCropComponent } from 'src/app/image-crop/image-crop.component';
 
 
 @Component({
@@ -80,7 +79,7 @@ export class ModalComponent implements OnInit {
 
       })
     } else {
-      this.userService.updateUser(this.userData._id, formData).pipe(this.toast.observe({
+      this.userService.updateUserProfile(this.userData._id, formData).pipe(this.toast.observe({
         loading: 'Updating user...',
         success: 'User updated successfully',
         error: 'There was an error'
@@ -89,11 +88,7 @@ export class ModalComponent implements OnInit {
       })
     }
   }
-  openImageCrop() {
-    const dialogRef = this.dialog.open(ImageCropComponent, {
-      width: '50%',
-    });
-  }
+ 
   onSelectedFile(event: any) {
     this.imageChangedEvent = event;
     this.cropperVisible = true;

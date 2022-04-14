@@ -9,7 +9,7 @@ import { User } from '../models/user.model';
 export class UserService {
 
   user=new Subject<User>()
-  users:User[]=[]
+  
   constructor(private http: HttpClient) { }
 
   createNewUser(file:FormData) {
@@ -23,8 +23,12 @@ export class UserService {
     return this.http.delete(`http://localhost:3000/users/${id}`)
   }
 
-  updateUser(id: any, data: any) {
+  updateUser(id: any, data: User) {
     return this.http.put(`http://localhost:3000/users/${id}`, data)
+  }
+
+  updateUserProfile(id: any, data: FormData) {
+    return this.http.put(`http://localhost:3000/users/profile/${id}`, data)
   }
 
    sendCsvFile(fileData:any){

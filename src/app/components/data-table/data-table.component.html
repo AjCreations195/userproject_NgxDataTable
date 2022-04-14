@@ -29,14 +29,9 @@
 
       <ngx-datatable-column name="File"  [flexGrow]="2" [isTreeColumn]="true" [width]="150">
         <ng-template let-rowIndex="rowIndex" let-value="value" let-row="row" ngx-datatable-cell-template>
-      <div *ngIf="row.file" class="imageDiv">
-        <img [src]="row.file"  alt="">
+      <div *ngIf="row.file" >
+        <img [src]="row.file" class="imageDiv"  alt="">
       </div>
-       <!-- <button  mat-mini-fab data-bs-toggle="modal" data-bs-target="#exampleModal" >
-            <mat-icon>image</mat-icon>
-        </button>
-        <input type="file" hidden #inputField
-        (change)="fileChangeEvent($event,row)"> -->
         </ng-template>
       </ngx-datatable-column>
 

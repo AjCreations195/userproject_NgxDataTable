@@ -50,26 +50,26 @@
                 
             </div>
             <div>
-                <button  mat-raised-button color="accent" (click)="onEditImage()"  >
-                     Add Image <mat-icon>image</mat-icon>
+                <button  mat-raised-button color="accent" class="addButton" (click)="onEditImage()"  >
+                    Upload Image <mat-icon>image</mat-icon>
                 </button>
                 <input type="file"  hidden #inputField (change)="onSelectedFile($event)"  >
             </div>
-           <div *ngIf="imageData" >
-               <img  alt="" style="height: 150px; ">
-           </div>
        <div class="row mt-3"  >
+           <div class="col-md-5">
+         <img [src]="croppedImage" style="height: 100px;" />
+         <br>
+         <button type="button" class="addButton mt-4" (click)="cropperVisible = !cropperVisible"  mat-raised-button
+         *ngIf="cropperVisible" color="accent">Save Photo</button>
+     </div> 
             <div  class="col-md-7">
          <image-cropper style="height: 200px;" [imageChangedEvent]="imageChangedEvent"
              [maintainAspectRatio]="true" [aspectRatio]="4 / 3"
              (cropperReady)="cropperReady($event)" format="png"
-             (imageCropped)="imageCropped($event)"  [style.display]="cropperVisible ? null : 'none'"></image-cropper>
+             (imageCropped)="imageCropped($event)" *ngIf="cropperVisible" ></image-cropper>
          </div>
-         <div class="col-md-5">
-         <img [src]="croppedImage" style="height: 100px;" />
-     </div> 
-     <!-- <button type="button" (click)="onSaveImage()" data-bs-dismiss="modal" mat-raised-button
-                    color="primary">Save Photo</button> -->
+         
+    
      </div>
         </div>
     </mat-dialog-content>
@@ -78,44 +78,3 @@
         <button mat-raised-button [disabled]="!userForm.valid" type="submit" (click)="onSubmit()" color="accent">Submit</button>
     </mat-dialog-actions>
 </form>
-
-
-<!-- <div class="modal fade" id="exampleModal"  tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLabel">Add Photo</h3>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-           
-            <div class="modal-body" >
-                <div class="text-center">
-                <div class="" >
-                    <img class="photo mb-2"  alt="">
-                </div>
-             <button mat-raised-button color="accent" (click)="onEditImage()">Update Photo</button>
-
-            </div>  <div class="row mt-3"  >
-                   <div  class="col-md-7">
-                <image-cropper style="height: 200px;" [imageChangedEvent]="imageChangedEvent"
-                    [maintainAspectRatio]="true" [aspectRatio]="4 / 3"
-                    (cropperReady)="cropperReady($event)" format="png"
-                    (imageCropped)="imageCropped($event)"  [style.display]="cropperVisible ? null : 'none'"></image-cropper>
-                </div>
-                <div class="col-md-5">
-                <img [src]="croppedImage" style="height: 100px;" />
-            </div> </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" mat-raised-button data-bs-dismiss="modal">Close</button>
-                <button type="button" (click)="onSaveImage()" data-bs-dismiss="modal" mat-raised-button
-                    color="primary">Save Photo</button>
-            </div>
-
-
-        </div>
-    </div>
-</div> -->

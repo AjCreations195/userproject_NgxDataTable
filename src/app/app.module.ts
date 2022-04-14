@@ -20,7 +20,6 @@ import { DataTableComponent } from './components/data-table/data-table.component
 import { ModalComponent } from './components/modal/modal.component';
 import { NgxDatatableModule } from '@serive/ngx-datatable';
 import { ImageCropperModule } from 'ngx-image-cropper';
-import { ImageCropComponent } from './image-crop/image-crop.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,6 @@ import { ImageCropComponent } from './image-crop/image-crop.component';
     NavbarComponent,
     DataTableComponent,
     ModalComponent,
-    ImageCropComponent,
   ],
   imports: [
     BrowserModule,

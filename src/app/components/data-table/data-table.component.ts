@@ -5,7 +5,6 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
-import { Dimensions, ImageCroppedEvent, base64ToFile } from 'ngx-image-cropper';
 import { ModalComponent } from '../modal/modal.component';
 
 @Component({
@@ -32,13 +31,7 @@ export class DataTableComponent implements OnInit {
   selected = [];
   userId!: any;
 
-  // imageChangedEvent: any = '';
-  // croppedImage: any = '';
-  // cropperVisible = false;
-  // fileToReturn!: File;
-
   @ViewChild('mydatatable') mydatatable!: DatatableComponent;
-  // @ViewChild('inputField') inputField!: ElementRef;
   @ViewChild('csvFile') csvFile!: ElementRef;
   constructor(private userService: UserService,
     private dialog: MatDialog,
