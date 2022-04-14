@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { map, Subject } from 'rxjs';
 import { User } from '../models/user.model';
 
 @Injectable({
@@ -8,10 +8,12 @@ import { User } from '../models/user.model';
 })
 export class UserService {
 
+  user=new Subject<User>()
+  users:User[]=[]
   constructor(private http: HttpClient) { }
 
-  createNewUser(data: User) {
-    return this.http.post('http://localhost:3000/users', data)
+  createNewUser(file:FormData) {
+    return this.http.post('http://localhost:3000/users',file)
   }
 
   getAllUsers() {
@@ -21,9 +23,12 @@ export class UserService {
     return this.http.delete(`http://localhost:3000/users/${id}`)
   }
 
-  updateUser(id: any, data: User) {
+  updateUser(id: any, data: any) {
     return this.http.put(`http://localhost:3000/users/${id}`, data)
   }
 
+   sendCsvFile(fileData:any){
+   return this.http.post('http://localhost:3000/files',fileData)
+ }
  
 }

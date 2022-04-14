@@ -1,7 +1,7 @@
 .disabled {opacity: 0.5; }
 
 .addButton{
-     width:50%;
+     width:23%;
      margin-top: 30px;
    }
 .draggable {
@@ -17,4 +17,11 @@
 
 input{
   width: 70%;
+}
+.imageDiv{
+  height: 80px;
+  width: 80px;
+  border-radius: 100%;
+  object-fit: cover;
+  overflow: hidden;
 }

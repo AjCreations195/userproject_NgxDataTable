@@ -1,14 +1,16 @@
 <div class="container">
 
   <div class="text-center">
-    <button class="addButton" (click)="openModal(null)" mat-raised-button color="accent">ADD NEW USER</button>\
+    <button class="addButton" (click)="openModal(null)" mat-raised-button color="accent">ADD NEW USER</button>
+    <button class="addButton mx-2" (click)="onSelectCsvButton()" mat-raised-button color="accent">ADD CSV FILE</button>
+    
+    <input type="file" accept=".csv" name="file upload" hidden #csvFile (change)="onSelectCsvFile($event)">
     <button mat-raised-button (click)="onIntend()" *ngIf="canIntend">Intend</button>
     <button mat-raised-button (click)="onOutdend()" *ngIf="canOutdend" class="mx-2">Outdent</button>
   </div>
   <div class="row m-4 text-center">
     <ngx-datatable class="material mat-elevation-z5 " #mydatatable
-      [columns]="[{ name: 'Name' }, { name: 'image' },{name:'Company'} ,{ name: 'Gender' }, { name: 'Age' },
-     ]"
+      [columns]="[{ name: 'Name' }, { name: 'File' },{name:'Company'} ,{ name: 'Gender' }, { name: 'Age' },]"
       [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10"
       [scrollbarH]="true" [treeFromRelation]="'manager'" [treeToRelation]="'name'" [rows]="rows"
       (treeAction)="onTreeAction($event)" [selected]="selected" [selectionType]="SelectionType.single"
@@ -27,12 +29,14 @@
 
       <ngx-datatable-column name="File"  [flexGrow]="2" [isTreeColumn]="true" [width]="150">
         <ng-template let-rowIndex="rowIndex" let-value="value" let-row="row" ngx-datatable-cell-template>
-       
-          <button mat-mini-fab data-bs-toggle="modal" data-bs-target="#exampleModal" >
+      <div *ngIf="row.file" class="imageDiv">
+        <img [src]="row.file"  alt="">
+      </div>
+       <!-- <button  mat-mini-fab data-bs-toggle="modal" data-bs-target="#exampleModal" >
             <mat-icon>image</mat-icon>
         </button>
         <input type="file" hidden #inputField
-        (change)="fileChangeEvent($event,row)">
+        (change)="fileChangeEvent($event,row)"> -->
         </ng-template>
       </ngx-datatable-column>
 
@@ -95,43 +99,3 @@
   </div>
 </div>
 
-
-<div class="modal fade" id="exampleModal"  tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLabel">Add Photo</h3>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-           
-            <div class="modal-body" >
-                <div class="text-center">
-                <div class="" >
-                    <img class="photo mb-2"  alt="">
-                </div>
-             <button mat-raised-button color="accent" (click)="onEditImage()">Update Photo</button>
-
-            </div>  <div class="row mt-3"  >
-                   <div  class="col-md-7">
-                <image-cropper style="height: 200px;" [imageChangedEvent]="imageChangedEvent"
-                    [maintainAspectRatio]="true" [aspectRatio]="4 / 3"
-                    (cropperReady)="cropperReady($event)" format="png"
-                    (imageCropped)="imageCropped($event)"  [style.display]="cropperVisible ? null : 'none'"></image-cropper>
-                </div>
-                <div class="col-md-5">
-                <img [src]="croppedImage" style="height: 100px;" />
-            </div> </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" mat-raised-button data-bs-dismiss="modal">Close</button>
-                <button type="button" (click)="onSaveImage()" data-bs-dismiss="modal" mat-raised-button
-                    color="primary">Save Photo</button>
-            </div>
-
-
-        </div>
-    </div>
-</div>

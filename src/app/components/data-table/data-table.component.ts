@@ -30,15 +30,16 @@ export class DataTableComponent implements OnInit {
   canOutdend!: boolean;
   SelectionType = SelectionType;
   selected = [];
-  userId:string | undefined;
+  userId!: any;
 
-  imageChangedEvent: any = '';
-  croppedImage: any = '';
-  cropperVisible = false;
-  fileToReturn!:File;
+  // imageChangedEvent: any = '';
+  // croppedImage: any = '';
+  // cropperVisible = false;
+  // fileToReturn!: File;
 
   @ViewChild('mydatatable') mydatatable!: DatatableComponent;
-  @ViewChild('inputField') inputField!: ElementRef;
+  // @ViewChild('inputField') inputField!: ElementRef;
+  @ViewChild('csvFile') csvFile!: ElementRef;
   constructor(private userService: UserService,
     private dialog: MatDialog,
     private toast: HotToastService) {
@@ -51,7 +52,7 @@ export class DataTableComponent implements OnInit {
   getAllUsers() {
     this.userService.getAllUsers().subscribe(res => {
       console.log(res);
-      
+
       this.rows = res;
     })
   }
@@ -77,7 +78,7 @@ export class DataTableComponent implements OnInit {
     })).subscribe(
       res => {
         console.log("deleted");
-        
+
         this.getAllUsers()
       }
     )
@@ -137,7 +138,7 @@ export class DataTableComponent implements OnInit {
     const index = this.rows.indexOf(row);
     this.rows[index][cell] = event.target.value;
     this.rows = [...this.rows];
-    this.userService.updateUser(row._id,this.rows[index]).pipe(this.toast.observe({
+    this.userService.updateUser(row._id, this.rows[index]).pipe(this.toast.observe({
       loading: 'Updating user...',
       success: 'User updated successfully',
       error: 'There was an error'
@@ -147,7 +148,7 @@ export class DataTableComponent implements OnInit {
     })
   }
 
-   onEdit(row: User, name: string) {
+  onEdit(row: User, name: string) {
     this.editable.editing = true;
     const index = this.rows.indexOf(row);
     this.editable.rowIndex = index;
@@ -155,8 +156,8 @@ export class DataTableComponent implements OnInit {
   }
 
   onSelect(event: { selected: [] }) {
-   const index = this.rows.indexOf(this.selected[0]);
-    console.log(index);
+    const index = this.rows.indexOf(this.selected[0]);
+    console.log(this.selected[0]);
     if (this.selected[0]['level'] == 0) {
       this.canIntend = false;
       this.canOutdend = false;
@@ -172,7 +173,6 @@ export class DataTableComponent implements OnInit {
             break;
           }
         }
-        console.log(this.intendParent);
 
       } else {
         this.canIntend = false;
@@ -198,7 +198,7 @@ export class DataTableComponent implements OnInit {
       this.doIntendOrOutdent(this.intendParent)
     }
   }
-  private doIntendOrOutdent(parent:string) {
+  private doIntendOrOutdent(parent: string) {
     const id = this.selected[0]['_id'];
     const user = {
       name: this.selected[0]['name'],
@@ -220,53 +220,23 @@ export class DataTableComponent implements OnInit {
     })
   }
 
-  fileChangeEvent(event: any,user:User): void {
-    this.imageChangedEvent = event;
-    this.cropperVisible = true;
-    this.userId = user._id
+  onSelectCsvButton() {
+    this.csvFile.nativeElement.click()
   }
-  onEditImage() {
-    this.inputField.nativeElement.click()
-  }
-  onFileSelected(event: any) { }
-  imageLoaded() {
-    this.cropperVisible = true;
-    console.log('Image loaded');
-  }
- 
-  cropperReady(sourceImageDimensions: Dimensions) {
-    console.log('Cropper ready', sourceImageDimensions);
-  }
+  onSelectCsvFile(event: any) {
+    const files = event.srcElement.files[0];
+    const formData = new FormData;
+    formData.append('csvFile', files)
+    console.log(formData.get('csvFile'));
+    this.userService.sendCsvFile(formData).pipe(this.toast.observe({
+      loading: 'Sending file...',
+      success: 'Updated successfully',
+      error: 'Something went wrong'
+    })).subscribe(res => {
+      this.getAllUsers();
 
-
-  imageCropped(event: ImageCroppedEvent) {
-    this.croppedImage = event.base64
-     this.fileToReturn = this.base64ToFile(
-      event.base64,
-      this.imageChangedEvent.target.files[0].name,
-    )
-    console.log(this.fileToReturn);
-    
-     return this.fileToReturn;
+    })
 
   }
-  base64ToFile(data: any, filename: string) {
 
-    const arr = data.split(',');
-    const mime = arr[0].match(/:(.*?);/)[1];
-    const bstr = atob(arr[1]);
-    let n = bstr.length;
-    let u8arr = new Uint8Array(n);
-
-    while (n--) {
-      u8arr[n] = bstr.charCodeAt(n);
-    }
-
-    return new File([u8arr], filename, { type: mime });
-  }
-
-  onSaveImage() {
-console.log(this.fileToReturn);
-
-  }
 }

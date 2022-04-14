@@ -6,6 +6,6 @@ export class User {
   gender!: string;
   company!: string;
   manager?: string;
-  file?:string;
+  file?:any;
 }
 
