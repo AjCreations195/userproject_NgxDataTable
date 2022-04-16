@@ -5,6 +5,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
+import { EditImageComponent } from '../edit-image/edit-image.component';
 import { ModalComponent } from '../modal/modal.component';
 
 @Component({
@@ -150,7 +151,6 @@ export class DataTableComponent implements OnInit {
 
   onSelect(event: { selected: [] }) {
     const index = this.rows.indexOf(this.selected[0]);
-    console.log(this.selected[0]);
     if (this.selected[0]['level'] == 0) {
       this.canIntend = false;
       this.canOutdend = false;
@@ -232,4 +232,13 @@ export class DataTableComponent implements OnInit {
 
   }
 
+    openEdit(data:User){
+      const dialogRef = this.dialog.open(EditImageComponent, {
+        width: '50%',
+        data:data
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        this.getAllUsers();
+      });
+    }
 }

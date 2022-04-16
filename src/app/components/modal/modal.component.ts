@@ -14,7 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent implements OnInit {
-  user$=this.userService.user
+
   genders = ['male', 'female'];
   managers: any;
   editMode = false;

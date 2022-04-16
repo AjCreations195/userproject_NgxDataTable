@@ -1,0 +1,20 @@
+<div class="text-center">
+    <img class="profileImage" [src]="profileImage" alt="">
+    <button mat-raised-button color="accent" class="addButton mx-2" (click)="onEditImage()">
+        Edit Image <mat-icon>image</mat-icon>
+    </button>
+    <input type="file" hidden #inputField (change)="onSelectedFile($event)">
+</div>
+<div class="row mt-3">
+    <div class="col-md-5">
+        <img [src]="croppedImage" style="height: 100px;" />
+        <br>
+        <button type="button" class="addButton mt-4" (click)="saveImage()" mat-raised-button *ngIf="cropperVisible"
+            color="accent">Save Photo</button>
+    </div>
+    <div class="col-md-7">
+        <image-cropper style="height: 200px;" [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
+            [aspectRatio]="4 / 3" (cropperReady)="cropperReady($event)" format="png"
+            (imageCropped)="imageCropped($event)" *ngIf="cropperVisible"></image-cropper>
+    </div>
+</div>

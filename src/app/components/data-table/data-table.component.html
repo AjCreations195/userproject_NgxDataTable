@@ -8,7 +8,7 @@
     <button mat-raised-button (click)="onIntend()" *ngIf="canIntend">Intend</button>
     <button mat-raised-button (click)="onOutdend()" *ngIf="canOutdend" class="mx-2">Outdent</button>
   </div>
-  <div class="row m-4 text-center">
+  <div class="row m-4 text-center table-responsive">
     <ngx-datatable class="material mat-elevation-z5 " #mydatatable
       [columns]="[{ name: 'Name' }, { name: 'File' },{name:'Company'} ,{ name: 'Gender' }, { name: 'Age' },]"
       [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10"
@@ -31,6 +31,7 @@
         <ng-template let-rowIndex="rowIndex" let-value="value" let-row="row" ngx-datatable-cell-template>
       <div *ngIf="row.file" >
         <img [src]="row.file" class="imageDiv"  alt="">
+        <button mat-mini-fab  (click)="openEdit(row)"><mat-icon>edit</mat-icon></button>
       </div>
         </ng-template>
       </ngx-datatable-column>
